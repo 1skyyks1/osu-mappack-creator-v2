@@ -11,9 +11,10 @@
             <div v-else>Select Folder</div>
           </button>
           <button
+              v-if="folderPath"
               class="btn-secondary"
               @click="handleBuildIndex"
-              :disabled="!folderPath || isBuildingIndex"
+              :disabled="isBuildingIndex"
           >
             {{ isBuildingIndex ? 'Loading...' : 'Refresh' }}
           </button>
@@ -35,15 +36,29 @@
               </button>
             </div>
 
-      <div class="status-pills" v-if="folderPath">
-        <div class="pill" v-if="hasIndex">
-          <span class="pill-label">Beatmap Count</span>
-          <span class="pill-value">{{ allBeatmaps.length }}</span>
+      <div class="header-right">
+        <div class="status-pills" v-if="folderPath">
+          <div class="pill" v-if="hasIndex">
+            <span class="pill-label">Beatmap Count</span>
+            <span class="pill-value">{{ allBeatmaps.length }}</span>
+          </div>
+          <div class="pill" v-if="lastDurationMs">
+            <span class="pill-label">Time</span>
+            <span class="pill-value">{{ durationText }}s</span>
+          </div>
         </div>
-        <div class="pill" v-if="lastDurationMs">
-          <span class="pill-label">Time</span>
-          <span class="pill-value">{{ durationText }}s</span>
-        </div>
+        <a
+            class="github-link"
+            href="https://github.com/1skyyks1/osu-mappack-creator-v2"
+            target="_blank"
+            rel="noreferrer"
+        >
+          <svg class="github-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+                d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56s0-1 0-2c-3.22.7-3.9-1.55-3.9-1.55a3.07 3.07 0 0 0-1.28-1.7c-1-.71.08-.7.08-.7a2.43 2.43 0 0 1 1.77 1.19 2.47 2.47 0 0 0 3.37 1 2.47 2.47 0 0 1 .74-1.55c-2.57-.29-5.27-1.29-5.27-5.73A4.51 4.51 0 0 1 5.2 8.19a4.2 4.2 0 0 1 .11-3.1s1-.33 3.3 1.26a11.31 11.31 0 0 1 6 0c2.27-1.59 3.29-1.26 3.29-1.26a4.2 4.2 0 0 1 .12 3.1 4.51 4.51 0 0 1 1.2 3.13c0 4.45-2.71 5.43-5.29 5.72a2.78 2.78 0 0 1 .79 2.16c0 1.56 0 2.82 0 3.2s.21.67.8.55A11.5 11.5 0 0 0 12 .5Z"
+            />
+          </svg>
+        </a>
       </div>
     </header>
 
@@ -826,6 +841,12 @@ onUnmounted(() => {
   gap: 20px;
 }
 
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .app-logo {
   font-weight: 700;
   font-size: 16px;
@@ -836,6 +857,33 @@ onUnmounted(() => {
 .actions-group {
   display: flex;
   gap: 10px;
+}
+
+.github-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 34px;
+  width: 34px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  font-size: 12px;
+  text-decoration: none;
+  color: var(--c-text-primary);
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+.github-link:hover {
+  border-color: var(--c-text-primary);
+  color: #000;
+  background: #fff;
+}
+
+.github-icon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
 }
 
 button {

@@ -1,16 +1,32 @@
-# Tauri + Vue + TypeScript
+<div align="center">
+<h2>osu-mappack-creator-v2</h2>
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+A Tauri + Vue 3 desktop app for creating osu! map packs.
 
-## Recommended IDE Setup
+**[English](README.md)**
+·
+**[简体中文](README_zh.md)**
+</div>
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+## Key Features
+- Select your osu! Songs directory, get beatmaps list with pagination & search.
+- Multi-select beatmaps, edit pack title/artist/creator, and edit HP/OD for each beatmap.
+- Automatically loads beatmap metadata and defaults new Version to `Artist - Title [Creator] (Version)`.
+- One-click pack creation with optional `delete this` files.
 
-## Type Support For `.vue` Imports in TS
+## How to use
+1. Launch the app and click **Select Folder** to point at your osu! `Songs` directory.
+2. If beatmaps in your Songs directory changed, please click **Refresh**.
+3. Select beatmaps, click **Next**, and adjust Version/HP/OD as needed.
+4. Fill Pack Title / Artist / Creator (required), choose an output folder, decide whether to include delete files.
+5. Click **Create Pack** and get `.osz` pack in output folder.
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's Take Over mode by following these steps:
+## Logging
+All runtime errors and important events are written to `%TEMP%\osu-mappack-creator-v2.log`.
 
-1. Run `Extensions: Show Built-in Extensions` from VS Code's command palette, look for `TypeScript and JavaScript Language Features`, then right click and select `Disable (Workspace)`. By default, Take Over mode will enable itself if the default TypeScript extension is disabled.
-2. Reload the VS Code window by running `Developer: Reload Window` from the command palette.
-
-You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
+## Getting Started & Build
+```bash
+npm install
+npx tauri dev
+npx tauri build
+```
