@@ -1,6 +1,5 @@
 <div align="center">
-<h2>osu-mappack-creator-v2</h2>
-
+### osu-mappack-creator-v2
 A Tauri + Vue 3 desktop app for creating osu! map packs.
 
 **[English](README.md)**
