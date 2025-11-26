@@ -3,12 +3,13 @@
     <header class="app-header">
       <div class="header-left">
         <div class="actions-group">
-          <button class="btn-primary" @click="handleSelectFolder">
+          <button
+              class="btn-primary select-folder-btn"
+              @click="handleSelectFolder"
+              :title="folderPath || 'Select Folder'"
+          >
             <span class="icon">📂</span>
-            <div v-if="folderPath">
-              {{ folderPath }}
-            </div>
-            <div v-else>Select Folder</div>
+            <div v-if="!folderPath">Select Folder</div>
           </button>
           <button
               v-if="folderPath"
@@ -21,7 +22,21 @@
         </div>
       </div>
 
-      <h2 class="app-logo" v-if="!isOperationMode">osu! mappack creator</h2>
+      <div style="display: flex; justify-content: center; gap: 8px; align-items: center">
+        <h2 class="app-logo" v-if="!isOperationMode">osu! mappack creator</h2>
+        <a
+            class="github-link"
+            href="https://github.com/1skyyks1/osu-mappack-creator-v2"
+            target="_blank"
+            rel="noreferrer"
+        >
+          <svg class="github-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+                d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56s0-1 0-2c-3.22.7-3.9-1.55-3.9-1.55a3.07 3.07 0 0 0-1.28-1.7c-1-.71.08-.7.08-.7a2.43 2.43 0 0 1 1.77 1.19 2.47 2.47 0 0 0 3.37 1 2.47 2.47 0 0 1 .74-1.55c-2.57-.29-5.27-1.29-5.27-5.73A4.51 4.51 0 0 1 5.2 8.19a4.2 4.2 0 0 1 .11-3.1s1-.33 3.3 1.26a11.31 11.31 0 0 1 6 0c2.27-1.59 3.29-1.26 3.29-1.26a4.2 4.2 0 0 1 .12 3.1 4.51 4.51 0 0 1 1.2 3.13c0 4.45-2.71 5.43-5.29 5.72a2.78 2.78 0 0 1 .79 2.16c0 1.56 0 2.82 0 3.2s.21.67.8.55A11.5 11.5 0 0 0 12 .5Z"
+            />
+          </svg>
+        </a>
+      </div>
       <div class="operation-summary" v-if="isOperationMode">
               <label class="add-delete-toggle">
                 <input type="checkbox" v-model="includeDelete">
@@ -47,18 +62,6 @@
             <span class="pill-value">{{ durationText }}s</span>
           </div>
         </div>
-        <a
-            class="github-link"
-            href="https://github.com/1skyyks1/osu-mappack-creator-v2"
-            target="_blank"
-            rel="noreferrer"
-        >
-          <svg class="github-icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path
-                d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56s0-1 0-2c-3.22.7-3.9-1.55-3.9-1.55a3.07 3.07 0 0 0-1.28-1.7c-1-.71.08-.7.08-.7a2.43 2.43 0 0 1 1.77 1.19 2.47 2.47 0 0 0 3.37 1 2.47 2.47 0 0 1 .74-1.55c-2.57-.29-5.27-1.29-5.27-5.73A4.51 4.51 0 0 1 5.2 8.19a4.2 4.2 0 0 1 .11-3.1s1-.33 3.3 1.26a11.31 11.31 0 0 1 6 0c2.27-1.59 3.29-1.26 3.29-1.26a4.2 4.2 0 0 1 .12 3.1 4.51 4.51 0 0 1 1.2 3.13c0 4.45-2.71 5.43-5.29 5.72a2.78 2.78 0 0 1 .79 2.16c0 1.56 0 2.82 0 3.2s.21.67.8.55A11.5 11.5 0 0 0 12 .5Z"
-            />
-          </svg>
-        </a>
       </div>
     </header>
 
@@ -913,6 +916,17 @@ button {
   color: #fff;
   border: 1px solid #000;
 }
+
+.select-folder-btn {
+  display: flex;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.select-folder-btn .icon {
+  padding-bottom: 4px;
+}
+
 .btn-primary:hover {
   background-color: #333;
   border-color: #333;
