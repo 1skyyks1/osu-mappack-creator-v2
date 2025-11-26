@@ -1,0 +1,25 @@
+[package]
+name = "osu-mappack-creator-v2"
+version = "0.1.0"
+description = "A Tauri App"
+authors = ["you"]
+edition = "2021"
+
+[lib]
+name = "osu_mappack_creator_v2_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+tauri-plugin-opener = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+regex = "1"
+zip = { version = "0.6", default-features = false, features = ["deflate"] }
+chrono = { version = "0.4", features = ["clock"] }
+
+
